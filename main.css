@@ -1,0 +1,113 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+    user-select: none;
+    outline: none;
+}
+
+:root {
+    --game_background: black;
+
+    --game_board_rows: 10;
+    --game_board_columns: 10;
+
+    --card_background_color: yellowGreen;
+    --card_text_color: white;
+}
+
+body {
+    background: var(--game_background);
+}
+
+.gameBoard {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+
+    grid-gap: 10px;
+
+    width: 100vw;
+    height: 100vh;
+
+    grid-template-columns: repeat(var(--game_board_columns), auto);
+    grid-template-rows: repeat(var(--game_board_rows), auto);
+}
+
+.card {
+    transition: 0.5s;
+
+    width: 50px;
+    height: 75px;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+
+    background: black;
+    border-radius: 10px;
+    border: 2px solid var(--card_background_color);
+
+    font-size: 18px;
+}
+.card:hover::before{
+    background-color: var(--game_background);
+}
+.card::before{
+    transition: 0.5s;
+    content: "";
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: 7px;
+    background-color: var(--card_background_color);
+    background-image: url('https://image.flaticon.com/icons/svg/149/149191.svg');
+    background-size: 70% 70%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.card_opened::before {
+    height: 0;
+    width: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    background: var(--game_background);
+}
+.card_locked{
+    border-color: var(--game_background) !important;
+}
+
+.wonGameWindow{
+    transition: 0.5s;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    justify-content: center;
+    align-content: center;
+
+    color: yellowgreen;
+
+
+    font-size: 32px;
+    text-shadow: 0 0 10px yellowgreen;
+}
+
+.hover_underline{
+    margin: auto;
+}
+.hover_underline > div{
+    margin: auto;
+    transition: width 0.5s;
+    background: yellowgreen;
+    height: 0;
+    width: 0;
+}
+.hover_underline:hover > div{
+    height: 2px;
+    width: 100%;
+}
