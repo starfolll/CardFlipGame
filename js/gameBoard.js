@@ -108,7 +108,7 @@ class GameBoard {
 
         this.wonWindow.style.visibility = null;
         this.wonWindow.style.background = "rgba(0, 0, 0, 0.9)";
-        TextPrinter.PrintWidthDelay(this.wonAlert, "YOU WON !!!", 30, "<div></div>");
+        TextPrinter.PrintWidthDelay(this.wonAlert, "[ YOU WON !!! ]", 30, "<div></div>");
 
         this.wonAlert.onclick = () => {
             this.wonWindow.style.visibility = "hidden";

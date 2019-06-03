@@ -91,7 +91,7 @@ body {
     align-content: center;
 
     color: yellowgreen;
-
+    background: rgba(0, 0, 0, 0.9);
 
     font-size: 32px;
     text-shadow: 0 0 10px yellowgreen;
