@@ -1,5 +1,6 @@
 class GameBoard {
     constructor(columns, rows) {
+        this.startTime = new Date();
         this.columns = columns;
         this.rows = rows;
         this.cards = [];
@@ -8,6 +9,9 @@ class GameBoard {
         this.gameBoargNode = document.getElementById("gameBoard");
         this.maxFlippedCard = 2;
         this.currentFlippedCard = 0;
+        this.cardsCount = this.columns * this.rows;
+        this.cardsLocked = 0;
+        this.flips = 0;
         this.isGaming = false;
 
         this.wonWindow = document.getElementById("wonGameWindow");
@@ -35,7 +39,9 @@ class GameBoard {
             }
         }
 
+        ScoreBoard.HideHighScore();
         this.Shuffle();
+        this.scoreAnimation = setInterval(() => this.ShowGameScore(), 30);
     }
 
     AddCard(node) {
@@ -65,6 +71,7 @@ class GameBoard {
     AddCardFlipRule(card) {
         card.cardNode.onclick = () => {
             if (this.isGaming && !card.isFlipped && this.maxFlippedCard > this.currentFlippedCard++) {
+                this.flips++;
                 card.Flip();
                 this.flippedCards.push(card);
 
@@ -92,6 +99,7 @@ class GameBoard {
             this.flippedCards.forEach(c => c.FlipBack());
         } else {
             this.flippedCards.forEach(c => c.Lock());
+            this.cardsLocked += this.maxFlippedCard;
             this.CheckForWin();
         }
 
@@ -107,8 +115,16 @@ class GameBoard {
         }
 
         this.wonWindow.style.visibility = null;
-        this.wonWindow.style.background = "rgba(0, 0, 0, 0.9)";
-        TextPrinter.PrintWidthDelay(this.wonAlert, "[ YOU WON !!! ]", 30, "<div></div>");
+        this.wonWindow.style.background = "rgba(0, 0, 0, 0.8)";
+        TextPrinter.PrintWidthDelay(this.wonAlert, "[ Play again ? ]", 30, "<div></div>");
+        ScoreBoard.UpdateHighScore(ScoreBoard.CompareTime(this.startTime, new Date()), this.flips);
+        ScoreBoard.DisplayHighScore(30);
+        this.ShowGameScore();
+        clearInterval(this.scoreAnimation);
+
+        this.cards.forEach(c => {
+            TextPrinter.RemoveCharactersWidthDelay(c.cardNode, Math.random() * 1000);
+        });
 
         this.wonAlert.onclick = () => {
             this.wonWindow.style.visibility = "hidden";
@@ -117,5 +133,18 @@ class GameBoard {
 
             GAME_BOARD = new GameBoard(this.columns, this.rows);
         };
+    }
+
+    ShowGameScore() {
+        let time = ScoreBoard.CompareTime(this.startTime, new Date());
+        let t =
+            (!!time.hours ? (("" + time.hours).length === 1 ? "0" + time.hours : time.hours) + ":" : "") +
+            (!!time.minutes ? (("" + time.minutes).length === 1 ? "0" + time.minutes : time.minutes) + ":" : "") +
+            (("" + time.seconds).length === 1 ? "0" + time.seconds : time.seconds);
+        ScoreBoard.DisplayGameScore(
+            t,
+            this.flips,
+            `${this.cardsLocked}/${this.cardsCount}`,
+        );
     }
 }

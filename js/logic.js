@@ -1,5 +1,8 @@
 let GAME_BOARD;
 
+ScoreBoard.HideGameScore();
+ScoreBoard.DisplayHighScore();
+
 TextPrinter.PrintWidthDelay(
     document.getElementById("wonAlert"),
     "[ Start ]",
@@ -18,4 +21,3 @@ document.getElementById("wonAlert").onclick = () => {
 
     GAME_BOARD = new GameBoard(8, 5);
 };
-

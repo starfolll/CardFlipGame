@@ -2,21 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shuffle Card Game</title>
+    <title>Flip card</title>
 
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
 
-<div id="gameBoard" class="gameBoard">
+<div id="gameBoard" class="gameBoard"></div>
+
+<div id="wonGameWindow" class="won_game_window">
+    <div id="wonAlert" class="hover_underline">
+        <div></div>
+    </div>
 </div>
 
-<div id="wonGameWindow" class="wonGameWindow">
-    <div id="wonAlert" class="hover_underline"><div></div></div>
+<div class="score_table">
+    <div id="highScoreBox" class="high_score_box">
+        <p id="highScoreHead" class="score_box_header"></p>
+        <p id="highScoreTime" class="time" ></p>
+        <p id="highScoreFlips" class="flips"></p>
+    </div>
+    <div id="gameScoreBox" class="game_score_box">
+        <p id="gameScoreHead" class="score_box_header"></p>
+        <p id="gameScoreTime" class="time" ></p>
+        <p id="gameScoreFlips" class="flips"></p>
+        <p id="gameScoreCardsLeft" class="card_compared"></p>
+    </div>
 </div>
-
 </body>
 
+<script src="js/scoreBoard.js"></script>
 <script src="js/textPrinter.js"></script>
 <script src="js/cardCharacters.js"></script>
 <script src="js/card.js"></script>

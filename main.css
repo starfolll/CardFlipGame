@@ -71,13 +71,13 @@ body {
     width: 0;
     margin-top: 10px;
     margin-left: 10px;
-    background: var(--game_background);
+    background-color: var(--card_background_color) !important;
 }
 .card_locked{
     border-color: var(--game_background) !important;
 }
 
-.wonGameWindow{
+.won_game_window{
     transition: 0.5s;
 
     position: fixed;
@@ -110,4 +110,26 @@ body {
 .hover_underline:hover > div{
     height: 2px;
     width: 100%;
+}
+
+.score_table{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    color: greenyellow;
+
+    font-size: 24px;
+    text-shadow: 0 0 15px yellowgreen;
+
+    background: rgba(20,20,20,0.9);
+    border-radius: 0 0 10px 0;
+}
+.score_table>div{
+    padding: 30px;
+}
+.score_box_header{
+    text-align: center;
+    border-bottom: 2px solid yellowgreen;
+    margin-bottom: 15px;
 }
