@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flip card</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<canvas id="animation" class="canvas_animation"></canvas>
+
+<div id="gameBoard" class="gameBoard"></div>
+
+<div id="wonGameWindow" class="won_game_window">
+    <div id="wonAlert" class="hover_underline">
+        <div></div>
+    </div>
+</div>
+
+<div class="score_table">
+    <div id="highScoreBox" class="high_score_box">
+        <p id="highScoreHead" class="score_box_header"></p>
+        <p id="highScoreTime" class="time" ></p>
+        <p id="highScoreFlips" class="flips"></p>
+    </div>
+    <div id="gameScoreBox" class="game_score_box">
+        <p id="gameScoreHead" class="score_box_header"></p>
+        <p id="gameScoreTime" class="time" ></p>
+        <p id="gameScoreFlips" class="flips"></p>
+        <p id="gameScoreCardsLeft" class="card_compared"></p>
+    </div>
+</div>
+
+</body>
+
+<!--ANIMATION-->
+<script src="js/animation/animation.js"></script>
+<script src="js/animation/Bubble.js"></script>
+<script src="js/animation/bubbleAnimation.js"></script>
+<script src="js/animation/canvasManager.js"></script>
+
+<!--GAME LOGIC-->
+<script src="js/scoreBoard.js"></script>
+<script src="js/textPrinter.js"></script>
+<script src="js/cardCharacters.js"></script>
+<script src="js/card.js"></script>
+<script src="js/gameBoard.js"></script>
+<script src="js/logic.js"></script>
+
+</html>
