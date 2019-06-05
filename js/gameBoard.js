@@ -1,5 +1,5 @@
 class GameBoard {
-    constructor(columns, rows) {
+    constructor(columns, rows, cardsCoincidences = 2) {
         this.startTime = new Date();
         this.columns = columns;
         this.rows = rows;
@@ -7,7 +7,7 @@ class GameBoard {
         this.flippedCards = [];
         this.hideDelay = 2000;
         this.gameBoargNode = document.getElementById("gameBoard");
-        this.maxFlippedCard = 2;
+        this.maxFlippedCard = cardsCoincidences;
         this.currentFlippedCard = 0;
         this.cardsCount = this.columns * this.rows;
         this.cardsLocked = 0;
@@ -115,7 +115,6 @@ class GameBoard {
         }
 
         this.wonWindow.style.visibility = null;
-        this.wonWindow.style.background = "rgba(0, 0, 0, 0.8)";
         TextPrinter.PrintWidthDelay(this.wonAlert, "[ Play again ? ]", 30, "<div></div>");
         ScoreBoard.UpdateHighScore(ScoreBoard.CompareTime(this.startTime, new Date()), this.flips);
         ScoreBoard.DisplayHighScore(30);
@@ -123,15 +122,18 @@ class GameBoard {
         clearInterval(this.scoreAnimation);
 
         this.cards.forEach(c => {
-            TextPrinter.RemoveCharactersWidthDelay(c.cardNode, Math.random() * 1000);
+            setTimeout(() => {
+                TextPrinter.RemoveCharactersWidthDelay(c.cardNode, Math.random() * 1000)
+            },Math.random()*50);
+            c.cardNode.style.background = "transparent";
+            c.cardNode.style.borderColor = "transparent";
         });
 
         this.wonAlert.onclick = () => {
             this.wonWindow.style.visibility = "hidden";
-            this.wonWindow.style.background = "rgba(0, 0, 0, 0)";
             TextPrinter.RemoveCharactersWidthDelay(this.wonAlert, 30);
 
-            GAME_BOARD = new GameBoard(this.columns, this.rows);
+            GAME_BOARD = new GameBoard(this.columns, this.rows, this.maxFlippedCard);
         };
     }
 

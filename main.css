@@ -48,12 +48,13 @@ body {
     border-radius: 10px;
     border: 2px solid var(--card_background_color);
 
-    font-size: 18px;
+    font-size: 20px;
+    text-align: center;
 }
 .card:hover::before{
     background-color: var(--game_background);
 }
-.card::before{
+.card::before {
     transition: 0.5s;
     content: "";
     position: absolute;
@@ -61,7 +62,7 @@ body {
     height: inherit;
     border-radius: 7px;
     background-color: var(--card_background_color);
-    background-image: url('https://image.flaticon.com/icons/svg/149/149191.svg');
+    background-image: url('https://image.flaticon.com/icons/svg/565/565742.svg');
     background-size: 70% 70%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -71,10 +72,10 @@ body {
     width: 0;
     margin-top: 10px;
     margin-left: 10px;
-    background-color: var(--card_background_color) !important;
+    background-color: var(--card_background_color);
 }
 .card_locked{
-    border-color: var(--game_background) !important;
+    border-color: var(--game_background);
 }
 
 .won_game_window{
@@ -91,7 +92,6 @@ body {
     align-content: center;
 
     color: yellowgreen;
-    background: rgba(0, 0, 0, 0.9);
 
     font-size: 32px;
     text-shadow: 0 0 10px yellowgreen;
@@ -104,11 +104,10 @@ body {
     margin: auto;
     transition: width 0.5s;
     background: yellowgreen;
-    height: 0;
+    height: 2px;
     width: 0;
 }
 .hover_underline:hover > div{
-    height: 2px;
     width: 100%;
 }
 
@@ -132,4 +131,13 @@ body {
     text-align: center;
     border-bottom: 2px solid yellowgreen;
     margin-bottom: 15px;
+}
+
+.canvas_animation{
+    z-index: -100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
