@@ -28,5 +28,5 @@ document.getElementById("wonAlert").onclick = () => {
     document.getElementById("wonGameWindow").style.visibility = "hidden";
     document.getElementById("wonGameWindow").style.background = "rgba(0,0,0,0)";
 
-    GAME_BOARD = new GameBoard(8, 5, 2);
+    GAME_BOARD = new GameBoard(16, 10, 2);
 };
